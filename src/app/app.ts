@@ -1,12 +1,16 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+// 1. Importas la clase del componente
+import { NavbarComponent } from './components/navbar/navbar'; 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  // 2. Lo agregas al arreglo de imports
+  imports: [RouterOutlet, NavbarComponent], 
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
-  protected readonly title = signal('e-commerce-frontendmentor');
+  title = 'mi-proyecto-angular';
 }
