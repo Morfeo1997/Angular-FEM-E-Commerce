@@ -2,8 +2,10 @@ import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-product-info',
-  templateUrl: './product-info.component.html',
-  styleUrls: ['./product-info.component.css']
+  standalone: true,
+  imports: [],
+  templateUrl: './product-info.html',
+  styleUrls: ['./product-info.css']
 })
 export class ProductInfoComponent {
   // Datos del producto

@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-image',
-  templateUrl: './product-image.component.html',
-  styleUrls: ['./product-image.component.css']
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './product-image.html',
+  styleUrls: ['./product-image.css']
 })
 export class ProductImageComponent {
   // Array con las rutas de las imágenes principales

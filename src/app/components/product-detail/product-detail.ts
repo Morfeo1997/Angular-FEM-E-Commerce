@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
+import { ProductImageComponent } from './product-image/product-image';
+import { ProductInfoComponent } from './product-info/product-info';
 
 @Component({
   selector: 'app-product-detail',
-  templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.css']
+  standalone: true,
+  imports: [ProductImageComponent, ProductInfoComponent],
+  templateUrl: './product-detail.html',
+  styleUrls: ['./product-detail.css']
 })
 export class ProductDetailComponent {
   
