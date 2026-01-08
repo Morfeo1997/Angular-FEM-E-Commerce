@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-// 1. Importas la clase del componente
+// Importas la clase del componente
 import { NavbarComponent } from './components/navbar/navbar'; 
 
 @Component({
