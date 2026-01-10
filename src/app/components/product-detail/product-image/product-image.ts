@@ -27,6 +27,7 @@ export class ProductImageComponent {
 
   // Índice de la imagen actual (empieza en 0)
   currentImageIndex: number = 0;
+  isLightboxOpen: boolean = false;
 
   // Obtener la imagen actual
   getCurrentImage(): string {
@@ -63,5 +64,11 @@ export class ProductImageComponent {
   // Verificar si una imagen está activa (para estilos del thumbnail)
   isActive(index: number): boolean {
     return this.currentImageIndex === index;
+  }
+  openLightbox(): void {
+    this.isLightboxOpen = true;
+  }
+  closeLightbox(): void {
+    this.isLightboxOpen = false;
   }
 }
