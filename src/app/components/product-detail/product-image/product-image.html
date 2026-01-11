@@ -103,7 +103,7 @@
           *ngFor="let thumbnail of thumbnailImages; let i = index"
           (click)="selectImage(i)"
           [class]="isActive(i) ? 
-            'border-2 border-orange-500 opacity-40 rounded-xl overflow-hidden transition-all' : 
+            'border-2 border-orange-500 opacity-75 rounded-xl overflow-hidden transition-all' : 
             'border-2 border-transparent rounded-xl overflow-hidden hover:opacity-75 transition-all'"
         >
           <img 
