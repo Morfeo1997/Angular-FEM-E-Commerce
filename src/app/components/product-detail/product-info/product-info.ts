@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { CartService } from '../../../services/cart';
 
 @Component({
   selector: 'app-product-info',
@@ -24,6 +25,8 @@ export class ProductInfoComponent {
   // Evento para comunicar al padre cuando se agrega al carrito
   @Output() addToCart = new EventEmitter<number>();
 
+  constructor(private cartService: CartService) {}
+
   // Incrementar cantidad
   incrementQuantity(): void {
     this.quantity++;
@@ -40,8 +43,21 @@ export class ProductInfoComponent {
   onAddToCart(): void {
     if (this.quantity > 0) {
       this.addToCart.emit(this.quantity);
-      // Opcional: resetear cantidad después de agregar
-      // this.quantity = 0;
+
+      const cartItem = {
+        name: this.productName,
+        price: this.currentPrice,
+        quantity: this.quantity,
+        image: 'assets/images/image-product-1-thumbnail.jpg' // Thumbnail del producto
+      };
+
+      this.cartService.addToCart(cartItem);
+
+      // Emitir evento al padre (opcional, por si quieres hacer algo más)
+      this.addToCart.emit(this.quantity);
+
+      // Resetear cantidad después de agregar
+      this.quantity = 0;
     }
   }
 

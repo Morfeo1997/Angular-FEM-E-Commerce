@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Necesario para usar directivas como @for o *ngIf
 import { RouterLink, RouterLinkActive } from '@angular/router'; // Importante para la navegación
+import { CartService, CartItem } from '../../services/cart'; 
+import { Subscription } from 'rxjs'; // 
 
 @Component({
   selector: 'app-navbar',
@@ -22,8 +24,25 @@ export class NavbarComponent {
   isCartOpen: boolean = false;
   cartItems: any[] = [];
 
+  private cartSubscription?: Subscription;
+
+  
+  constructor(private cartService: CartService) {}
+
   toggleCart(): void {
     this.isCartOpen = !this.isCartOpen;
+  }
+
+  ngOnInit(): void {
+    this.cartSubscription = this.cartService.cartItems$.subscribe(items => {
+      this.cartItems = items;
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
+    }
   }
 
   getCartItemCount(): number {
