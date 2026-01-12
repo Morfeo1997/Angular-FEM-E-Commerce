@@ -22,6 +22,7 @@ export class NavbarComponent {
   ];
 
   isCartOpen: boolean = false;
+  isMobileMenuOpen: boolean = false;
   cartItems: any[] = [];
 
   private cartSubscription?: Subscription;
@@ -31,6 +32,10 @@ export class NavbarComponent {
 
   toggleCart(): void {
     this.isCartOpen = !this.isCartOpen;
+  }
+  
+  toggleMobileMenu(): void {
+  	this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 
   ngOnInit(): void {

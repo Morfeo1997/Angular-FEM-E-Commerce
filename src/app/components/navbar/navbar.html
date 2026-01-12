@@ -1,32 +1,52 @@
-<nav class="flex items-center justify-between px-4 py-3  bg-white text-slate-900 shadow-lg">
+<nav class="flex items-center justify-between px-4 md:px-6 py-4 md:py-6 bg-white text-slate-900 border-b border-gray-200">
   
-  <ul class="flex gap-6">
-    <li>
-      <picture href=""class="text-xl font-bold text-slate-900">
-        <img src="../../../assets/images/logo.svg" alt="Logo Sneakers" class="">
-      </picture>
-    </li>
-    @for (link of navLinks; track link.path) {
-      <li >
-        <a 
-          [routerLink]="link.path" 
-          class="text-Dark-grayish-blue border-b-4 py-4 border-transparent hover:border-Orange hover:text-Orange transition-colors "> 
-          {{ link.label }}
-        </a>
-      </li>
-    }
-  </ul>
-  <ul class="flex gap-6">
+  <!-- SECCIÓN IZQUIERDA: Hamburger (mobile) + Logo + Links (desktop) -->
+  <div class="flex items-center gap-4 md:gap-8">
+    
+    <!-- Botón hamburguesa (solo mobile) -->
+    <button 
+      (click)="toggleMobileMenu()"
+      class="md:hidden"
+      aria-label="Toggle menu"
+    >
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 16 15">
+        <path d="M16 12v3H0v-3h16Zm0-6v3H0V6h16Zm0-6v3H0V0h16Z"/>
+      </svg>
+    </button>
+
+    <!-- Logo -->
+    <a href="/" class="flex items-center">
+      <img src="assets/images/logo.svg" alt="Logo Sneakers" class="h-5 md:h-6">
+    </a>
+
+    <!-- Links de navegación (solo desktop) -->
+    <ul class="hidden md:flex gap-8">
+      @for (link of navLinks; track link.path) {
+        <li>
+          <a 
+            [routerLink]="link.path" 
+            class="text-gray-600 border-b-4 pb-8 border-transparent hover:border-orange-500 hover:text-gray-900 transition-colors"> 
+            {{ link.label }}
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+
+  <!-- SECCIÓN DERECHA: Carrito + Avatar -->
+  <ul class="flex items-center gap-4 md:gap-6">
+    <!-- Carrito -->
     <li class="relative">
       <button 
         (click)="toggleCart()"
-        class="flex justify-center items-center cursor-pointer mt-1 relative"
+        class="relative"
+        aria-label="Shopping cart"
       >
-        <svg class="w-8 h-8 fill-gray-700 hover:fill-black transition-colors duration-500">
+        <svg class="w-6 h-6 fill-gray-700 hover:fill-black transition-colors">
           <path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"/>
         </svg>
         
-        <!-- Badge con cantidad (solo si hay items) -->
+        <!-- Badge -->
         <span 
           *ngIf="getCartItemCount() > 0"
           class="absolute -top-2 -right-2 bg-orange-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"
@@ -38,32 +58,25 @@
       <!-- DROPDOWN DEL CARRITO -->
       <div 
         *ngIf="isCartOpen"
-        class="absolute right-0 top-12 w-80 md:w-96 bg-white rounded-lg shadow-2xl z-50"
+        class="absolute right-0 top-12 w-[90vw] md:w-96 bg-white rounded-lg shadow-2xl z-50"
       >
-        <!-- Header del carrito -->
         <div class="p-4 border-b border-gray-200">
           <h3 class="font-bold text-gray-900">Cart</h3>
         </div>
 
-        <!-- Contenido del carrito -->
         <div class="p-4 min-h-[180px]">
-          <!-- Estado VACÍO -->
           <div *ngIf="cartItems.length === 0" class="flex items-center justify-center h-32">
             <p class="text-gray-500 font-medium">Your cart is empty.</p>
           </div>
 
-          <!-- Estado CON ITEMS -->
           <div *ngIf="cartItems.length > 0" class="space-y-4">
-            <!-- Item del carrito -->
             <div *ngFor="let item of cartItems; let i = index" class="flex items-center gap-4">
-              <!-- Imagen del producto -->
               <img 
                 [src]="item.image" 
                 [alt]="item.name"
                 class="w-12 h-12 rounded object-cover"
               >
 
-              <!-- Info del producto -->
               <div class="flex-1">
                 <p class="text-gray-600 text-sm">{{ item.name }}</p>
                 <p class="text-gray-600 text-sm">
@@ -74,7 +87,6 @@
                 </p>
               </div>
 
-              <!-- Botón eliminar -->
               <button 
                 (click)="removeItem(i)"
                 class="text-gray-400 hover:text-gray-600 transition-colors"
@@ -85,7 +97,6 @@
               </button>
             </div>
 
-            <!-- Botón Checkout -->
             <button class="w-full bg-orange-500 hover:bg-orange-400 text-white font-bold py-3 rounded-lg transition-colors">
               Checkout
             </button>
@@ -93,10 +104,53 @@
         </div>
       </div>
     </li>
+
+    <!-- Avatar -->
     <li>
-      <picture class=" flex h-9 w-9 border-2 border-transparent rounded-full hover:border-Orange">
-        <img src="../../../assets/images/image-avatar.png" alt="avatar" class="w-full h-full">
-      </picture>
+      <button class="h-8 w-8 md:h-10 md:w-10 border-2 border-transparent rounded-full hover:border-orange-500 transition-colors overflow-hidden">
+        <img src="assets/images/image-avatar.png" alt="avatar" class="w-full h-full">
+      </button>
     </li>
   </ul>
 </nav>
+
+<!-- MENÚ MOBILE (Sidebar) -->
+<div 
+  *ngIf="isMobileMenuOpen"
+  class="fixed inset-0 z-50 md:hidden"
+>
+  <!-- Overlay oscuro -->
+  <div 
+    (click)="toggleMobileMenu()"
+    class="absolute inset-0 bg-black bg-opacity-75"
+  ></div>
+
+  <!-- Sidebar -->
+  <div class="absolute left-0 top-0 bottom-0 w-64 bg-white p-6">
+    <!-- Botón cerrar -->
+    <button 
+      (click)="toggleMobileMenu()"
+      class="mb-12"
+      aria-label="Close menu"
+    >
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 14 15">
+        <path d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z"/>
+      </svg>
+    </button>
+
+    <!-- Links mobile -->
+    <ul class="space-y-6">
+      @for (link of navLinks; track link.path) {
+        <li>
+          <a 
+            [routerLink]="link.path"
+            (click)="toggleMobileMenu()"
+            class="text-lg font-bold text-gray-900 hover:text-orange-500 transition-colors"
+          >
+            {{ link.label }}
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+</div>
