@@ -42,7 +42,7 @@
         class="text-orange-500 hover:text-orange-400 font-bold text-xl transition-colors"
         aria-label="Decrease quantity"
       >
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 12 4">
+        <svg class="w-4 h-4 cursor-pointer" fill="currentColor" viewBox="0 0 12 4">
           <path d="M11.357 3.332H.643A.643.643 0 0 1 0 2.689V1.31C0 .967.287.667.643.667h10.714c.356 0 .643.3.643.643v1.38a.643.643 0 0 1-.643.642Z"/>
         </svg>
       </button>
@@ -58,7 +58,7 @@
         class="text-orange-500 hover:text-orange-400 font-bold text-xl transition-colors"
         aria-label="Increase quantity"
       >
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 12 12">
+        <svg class="w-4 h-4 cursor-pointer" fill="currentColor" viewBox="0 0 12 12">
           <path d="M12 7.023V4.977a.641.641 0 0 0-.643-.643h-3.69V.643A.641.641 0 0 0 7.022 0H4.977a.641.641 0 0 0-.643.643v3.69H.643A.641.641 0 0 0 0 4.978v2.046c0 .356.287.643.643.643h3.69v3.691c0 .356.288.643.644.643h2.046a.641.641 0 0 0 .643-.643v-3.69h3.691A.641.641 0 0 0 12 7.022Z"/>
         </svg>
       </button>
@@ -71,6 +71,7 @@
       [disabled]="quantity === 0"
       [class.opacity-50]="quantity === 0"
       [class.cursor-not-allowed]="quantity === 0"
+      [class.cursor-pointer]="quantity > 0"
     >
       <!-- Cart Icon -->
       <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 22 20">

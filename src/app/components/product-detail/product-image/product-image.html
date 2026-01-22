@@ -5,7 +5,7 @@
     <img 
       [src]="getCurrentImage()" 
       [alt]="'Product image ' + (currentImageIndex + 1)"
-      class="w-full h-auto rounded-lg md:rounded-2xl object-cover"
+      class="w-full h-auto rounded-lg cursor-pointer md:rounded-2xl object-cover"
       (click)="openLightbox()"
     >
     
@@ -47,7 +47,7 @@
       <img 
         [src]="thumbnail" 
         [alt]="'Thumbnail ' + (i + 1)"
-        class="w-full h-auto"
+        class="w-full h-auto cursor-pointer"
       >
     </button>
     <div 
