@@ -1,15 +1,15 @@
 # E-Commerce   Frontendmentor's Challenge
-- Esto es un desafio para la pagina frontendmentor en que se debe replicar una pantalla de E-commerce.
-## Caracteristicas:
-- Sistema Lightbox para ver imagenes
-- Sistema de carrito funcional
-- Version y menu exclusivo para Mobile
+- This is a challenge for the frontendmentor page, which must replicate an e-commerce screen.
+## Features:
+- Lightbox system for viewing images
+- Functional cart system
+- Mobile version and menu
 
-## Tecnologias
+## Technologies
 - Angular 21
 - Tailwindcss
 
 ## Links
-- Proyecto :
+- Project : (https://e-commerce-frontend-mentor.netlify.app/)
 - Dev : (https://gaston-gomez1997.netlify.app/)
 - Frontendmentor:  (https://www.frontendmentor.io/)
