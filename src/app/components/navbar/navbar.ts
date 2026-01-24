@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Necesario para usar directivas como @for o *ngIf
-import { RouterLink, RouterLinkActive } from '@angular/router'; // Importante para la navegación
-import { CartService, CartItem } from '../../services/cart'; 
+import { RouterLink } from '@angular/router'; // Importante para la navegación
+import { CartService } from '../../services/cart'; 
 import { Subscription } from 'rxjs'; // 
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive], // Importamos las herramientas de navegación
+  imports: [CommonModule, RouterLink], // Importamos las herramientas de navegación
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.css']
 })
